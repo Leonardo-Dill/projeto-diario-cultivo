@@ -7,7 +7,7 @@ try{
     $dsn = 'mysql:host='.$_ENV["db_host"].';dbname='.$_ENV["db_name"].';charset=utf8mb4';
     $conexao = new PDO($dsn, $_ENV["db_user"],$_ENV["db_pass"]);
     $conexao->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    echo "Conexão realizada com sucesso";
+    //echo "Conexão realizada com sucesso";
 }
 catch(PDOException $e){
     echo "Ocorreu um erro ao conectar com o banco: " . $e->getMessage();
