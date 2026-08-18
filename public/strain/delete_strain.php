@@ -1,6 +1,6 @@
 <?php
 require __DIR__.'/../../config/db/conexao.php';
-$id = '2';
+$id = $_GET['id'];
 $sql = 'DELETE FROM strain WHERE id = ?';
 try{
     $stmt = $conexao->prepare($sql);
@@ -8,3 +8,4 @@ try{
 }catch(PDOException $e){
     echo "Ocorreu um erro ao acessar o banco de dados: " . $e->getMessage();
 }
+header('Location: listar.php');

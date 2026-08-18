@@ -22,13 +22,14 @@ try{
     </header>
     <main>
         <a href="create_strain.php" class="btn">Cadastrar nova strain</a>
+        <a href="../index.php" class="btn">Voltar</a>
         <?php foreach ($strains as $strain): ?>
             <div class="card">
                 <h2><?= $strain['nome'] ?></h2>
                 <p> <?= $strain['caracteristicas'] ?></p>
-                <p> <?= $strain['floracao_semanas'] ?> semanas</p>
-                <a href="editar.php?id=<?= $strain['id'] ?>" class="btn">Editar</a>
-                <a href="delete_strain.php?id=<?= $strain['id'] ?>" class="btn">Apagar</a>
+                <p>Floração: <?= $strain['floracao_semanas'] ?> semanas</p>
+                <a href="update_strain.php?id=<?= $strain['id'] ?>" class="btn">Editar</a>
+                <a href="delete_strain.php?id=<?= $strain['id'] ?>" class="btn" onclick="return confirm('Tem certeza que quer deletar essa strain? Esta ação não pode ser desfeita.')">Apagar</a>
             </div>
         <?php endforeach; ?>
     </main>

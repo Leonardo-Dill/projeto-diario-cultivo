@@ -21,7 +21,7 @@
         <div class="card">
             <h2>GERENCIAR PLANTAS</h2>
             <p>Aqui você pode ver, criar, editar e apagar os registros de uma planta</p>
-            <a href="planta/listar.php" class="btn">Ir para minhas plantas</a>
+            <a href="planta/read_planta.php" class="btn">Ir para minhas plantas</a>
         </div>
     </main>
 </body>
