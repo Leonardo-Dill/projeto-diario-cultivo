@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../../config/db/conexao.php';
-$id = $_POST['id'];
+$id = $_GET['id'];
 $sql = 'DELETE FROM planta WHERE id = ?';
 try{
     $stmt = $conexao->prepare($sql);
@@ -9,3 +9,4 @@ try{
 }catch(PDOException $e){
     echo 'ocorreu um erro ao apagar: ' . $e->getMessage();
 }
+header('Location: read_planta.php');
