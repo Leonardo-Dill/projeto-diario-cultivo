@@ -4,12 +4,13 @@ require __DIR__ . '/../../config/db/conexao.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $strain_id = $_POST['strain_id'];
     $tipo_cultivo = $_POST['tipo_cultivo'];
-    $germinacao = $_POST['germinacao'] ?? null;
-    $plantinha = $_POST['plantinha'] ?? null;
-    $vegetativo = $_POST['vegetativo'] ?? null;
-    $floracao = $_POST['floracao'] ?? null;
-    $colheita = $_POST['colheita'] ?? null;
-    $rendimento = $_POST['rendimento'] ?? null;
+    // campos vazios viram null, senão o MySQL grava '0000-00-00'
+    $germinacao = ($_POST['germinacao'] ?? '') !== '' ? $_POST['germinacao'] : null;
+    $plantinha = ($_POST['plantinha'] ?? '') !== '' ? $_POST['plantinha'] : null;
+    $vegetativo = ($_POST['vegetativo'] ?? '') !== '' ? $_POST['vegetativo'] : null;
+    $floracao = ($_POST['floracao'] ?? '') !== '' ? $_POST['floracao'] : null;
+    $colheita = ($_POST['colheita'] ?? '') !== '' ? $_POST['colheita'] : null;
+    $rendimento = ($_POST['rendimento'] ?? '') !== '' ? $_POST['rendimento'] : null;
 
     $sql = 'INSERT INTO planta (strain_id, tipo_cultivo, germinacao, plantinha, vegetativo, floracao, colheita, rendimento) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
 
@@ -17,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conexao->prepare($sql);
         $stmt->execute([$strain_id, $tipo_cultivo, $germinacao, $plantinha, $vegetativo, $floracao, $colheita, $rendimento]);
         header('Location: read_planta.php');
-
+        exit;
     } catch (PDOException $e) {
         echo "Erro ao criar planta: " . $e->getMessage();
     }
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button type="submit" class="btn">Salvar</button>
         </form>
         <div class="btn-voltar">
-            <a href="listar.php" class="btn">Voltar</a>
+            <a href="read_planta.php" class="btn">Voltar</a>
         </div>
     </main>
 </body>

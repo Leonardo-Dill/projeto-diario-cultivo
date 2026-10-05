@@ -27,6 +27,7 @@ try{
         <?php foreach ($plantas as $planta): ?>
             <div class="card">
                 <h2><?= $planta['strain_nome'] ?> - ID: <?= $planta['id'] ?></h2>
+                <a href="../foto/galeria.php?planta_id=<?= $planta['id'] ?>" class="btn">Fotos</a>
                 <a href="update_planta.php?id=<?= $planta['id'] ?>" class="btn">Editar</a>
                 <a href="delete_planta.php?id=<?= $planta['id'] ?>" class="btn" onclick="return confirm('Tem certeza que quer deletar essa planta? Esta ação não pode ser desfeita.')">Apagar</a>
             </div>
