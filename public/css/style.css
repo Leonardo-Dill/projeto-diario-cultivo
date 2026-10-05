@@ -160,3 +160,13 @@ input[type="file"] {
     text-align: center;
     margin: 20px;
 }
+
+/*----detalhe da planta----*/
+.card p {
+    margin-top: 5px;
+}
+.manejo-item {
+    border-left: 3px solid var(--cor-destaque);
+    padding-left: 10px;
+    margin-top: 10px;
+}
