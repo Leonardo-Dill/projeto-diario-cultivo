@@ -1,4 +1,9 @@
 <?php
+/**
+ * Apaga uma foto. Só aceita POST (id e planta_id).
+ *
+ * Remove o registro e o arquivo de public/uploads/ (basename evita sair da pasta).
+ */
 require_once __DIR__ . '/../../config/db/conexao.php';
 
 $id = (int) ($_POST['id'] ?? 0);

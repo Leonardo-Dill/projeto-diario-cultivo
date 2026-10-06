@@ -1,4 +1,9 @@
 <?php
+/**
+ * Lista as plantas com o nome da strain.
+ *
+ * Cada card tem links para detalhes, fotos, edição e exclusão.
+ */
 require_once __DIR__ . '/../../config/db/conexao.php';
 
 $sql = 'SELECT p.*, s.nome as strain_nome FROM planta p JOIN strain s ON p.strain_id = s.id';

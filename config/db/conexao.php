@@ -1,4 +1,11 @@
 <?php
+/**
+ * Conexão com o banco de dados.
+ *
+ * Lê as credenciais do arquivo .env (db_host, db_name, db_user, db_pass) e cria
+ * a variável $conexao (PDO, utf8mb4, erros como exceção). Incluído por todas as
+ * páginas que acessam o banco.
+ */
 include_once __DIR__ . '/../../vendor/autoload.php';
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../../');
 $dotenv->load();

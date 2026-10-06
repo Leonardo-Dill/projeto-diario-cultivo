@@ -1,4 +1,10 @@
 <?php
+/**
+ * Cadastro de strain.
+ *
+ * GET: mostra o formulário. POST: grava nome, características e semanas de
+ * floração e redireciona para listar.php.
+ */
 require __DIR__ . '/../../config/db/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,4 +1,10 @@
 <?php
+/**
+ * Cadastro de planta.
+ *
+ * GET: mostra o formulário. POST: grava a planta; datas e rendimento vazios
+ * são gravados como NULL. Redireciona para read_planta.php.
+ */
 require __DIR__ . '/../../config/db/conexao.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {

@@ -1,4 +1,11 @@
 <?php
+/**
+ * Edição de planta.
+ *
+ * GET ?id=: mostra o formulário preenchido. POST: valida strain, datas e
+ * rendimento e atualiza todos os campos; campo vazio vira NULL (permite limpar
+ * um valor). Redireciona para read_planta.php.
+ */
 require __DIR__ . "/../../config/db/conexao.php";
 
 const CAMPOS_DATA = [
@@ -80,6 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $planta = array_merge($planta, $_POST);
 }
 
+/** Escapa um valor para exibir em HTML. */
 function h($valor): string
 {
     return htmlspecialchars((string) $valor);

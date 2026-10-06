@@ -1,5 +1,12 @@
 <?php
+/**
+ * Detalhe de uma planta (GET ?id=).
+ *
+ * Mostra cultivo, fase atual, dias de vida, datas das fases, prévia das fotos e
+ * a lista de manejo, com os botões para registrar, editar e apagar manejo.
+ */
 require_once __DIR__ . '/../../config/db/conexao.php';
+require_once __DIR__ . '/../../config/helpers.php';
 
 const FASES = [
     'germinacao' => 'Germinação',
@@ -10,11 +17,11 @@ const FASES = [
 ];
 const FOTOS_NA_PREVIA = 4;
 
-function h($valor): string
-{
-    return htmlspecialchars((string) $valor);
-}
-
+/**
+ * Formata uma data do banco (Y-m-d) como d/m/Y.
+ *
+ * @return string A data formatada, ou "—" se for nula ou vazia.
+ */
 function formatarData(?string $data): string
 {
     return $data ? date('d/m/Y', strtotime($data)) : '—';
@@ -39,7 +46,7 @@ try {
     $stmt->execute([$id]);
     $fotos = $stmt->fetchAll();
 
-    $stmt = $conexao->prepare('SELECT data, tipo, observacoes FROM manejo WHERE planta_id = ? ORDER BY data DESC, id DESC');
+    $stmt = $conexao->prepare('SELECT id, data, tipo, observacoes FROM manejo WHERE planta_id = ? ORDER BY data DESC, id DESC');
     $stmt->execute([$id]);
     $manejos = $stmt->fetchAll();
 } catch (PDOException $e) {
@@ -118,6 +125,7 @@ if (!empty($planta['germinacao'])) {
 
         <div class="card">
             <h2>Manejo (<?= count($manejos) ?>)</h2>
+            <a href="../manejo/create_manejo.php?planta_id=<?= (int) $planta['id'] ?>" class="btn">Registrar manejo</a>
             <?php if (!$manejos): ?>
                 <p>Nenhum manejo registrado ainda.</p>
             <?php endif; ?>
@@ -127,6 +135,14 @@ if (!empty($planta['germinacao'])) {
                     <?php if (!empty($manejo['observacoes'])): ?>
                         <p><?= nl2br(h($manejo['observacoes'])) ?></p>
                     <?php endif; ?>
+                    <div class="acoes">
+                        <a href="../manejo/update_manejo.php?id=<?= (int) $manejo['id'] ?>" class="btn">Editar</a>
+                        <form method="POST" action="../manejo/delete_manejo.php" onsubmit="return confirm('Apagar este manejo? Esta ação não pode ser desfeita.')">
+                            <input type="hidden" name="id" value="<?= (int) $manejo['id'] ?>">
+                            <input type="hidden" name="planta_id" value="<?= (int) $planta['id'] ?>">
+                            <button type="submit" class="btn">Apagar</button>
+                        </form>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
