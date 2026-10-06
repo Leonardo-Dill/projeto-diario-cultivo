@@ -1,4 +1,11 @@
 <?php
+/**
+ * Galeria e upload de fotos de uma planta (?planta_id=).
+ *
+ * POST: valida o arquivo (tamanho, tipo real via finfo/getimagesize, data), salva
+ * em public/uploads/ com nome aleatório e grava só o nome na tabela fotos.
+ * GET: lista as fotos da mais recente para a mais antiga.
+ */
 require_once __DIR__ . '/../../config/db/conexao.php';
 
 const PASTA_UPLOADS = __DIR__ . '/../uploads/';

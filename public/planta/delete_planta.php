@@ -1,4 +1,11 @@
 <?php
+/**
+ * Apaga uma planta (GET ?id=).
+ *
+ * O ON DELETE CASCADE remove manejo e fotos do banco, mas não os arquivos de
+ * imagem; por isso os nomes das fotos são lidos antes e os arquivos removidos
+ * do disco depois. Redireciona para read_planta.php.
+ */
 require_once __DIR__ . '/../../config/db/conexao.php';
 $id = $_GET['id'] ?? '';
 

@@ -1,4 +1,9 @@
 <?php
+/**
+ * Lista as strains cadastradas.
+ *
+ * Cada strain tem links para editar e para apagar (delete_strain.php, com confirmação).
+ */
 require __DIR__ .'/../../config/db/conexao.php';
 $sql = 'SELECT * FROM strain';
 try{

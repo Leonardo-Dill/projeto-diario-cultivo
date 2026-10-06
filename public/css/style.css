@@ -170,3 +170,19 @@ input[type="file"] {
     padding-left: 10px;
     margin-top: 10px;
 }
+
+/*----ações do manejo----*/
+.acoes {
+    display: flex;
+    align-items: center;
+}
+.acoes .btn {
+    margin: 5px 15px 5px 0;
+}
+.acoes form {
+    display: inline;
+}
+.acoes button.btn {
+    font-size: inherit;
+    padding: 8px;
+}

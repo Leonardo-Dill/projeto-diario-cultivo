@@ -1,4 +1,10 @@
 <?php
+/**
+ * Edição de strain.
+ *
+ * GET ?id=: mostra o formulário preenchido. POST: atualiza os três campos e
+ * redireciona para listar.php.
+ */
 require __DIR__ . '/../../config/db/conexao.php';
 $id = $_GET['id'] ?? '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
